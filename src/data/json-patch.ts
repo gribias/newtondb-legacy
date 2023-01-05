@@ -23,11 +23,11 @@ export type PatchOperation =
 export type Patch = PatchOperation[];
 
 function unescape(path: string) {
-  return path.replaceAll("~1", "/").replaceAll("~0", "~");
+   return path.replace(/~1/g, "/").replace(/~0/g, "~");
 }
 
 function escape(path: string) {
-  return path.replaceAll("~", "~0").replaceAll("/", "~1");
+ return path.replace(/~/g, "~0").split('/').join("~1");
 }
 
 export function toTokens(path: string) {
